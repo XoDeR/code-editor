@@ -7,6 +7,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import { SignedIn } from "@clerk/clerk-react";
+import { Navbar } from "./components/navbar";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Toaster />
       <BrowserRouter>
         <div className="min-h-screen bg-background">
+          <Navbar />
           <Routes>
             <Route path="/" element={<CodeEditor />} />
             <Route path="/auth" element={<Auth />} />
