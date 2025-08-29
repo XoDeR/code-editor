@@ -6,6 +6,7 @@ import CodeEditor from "./pages/CodeEditor";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import { SignedIn } from "@clerk/clerk-react";
 
 const App = () => {
   return (
@@ -17,7 +18,9 @@ const App = () => {
             <Route path="/" element={<CodeEditor />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={
-              <Dashboard />
+              <SignedIn>
+                <Dashboard />
+              </SignedIn>
             } />
             <Route path="*" element={<NotFound />} />
           </Routes>
