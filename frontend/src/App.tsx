@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import { SignedIn } from "@clerk/clerk-react";
 import { Navbar } from "./components/navbar";
+import { CodeEditorProvider } from "./context/CodeEditorContext";
 
 const App = () => {
   return (
@@ -16,16 +17,18 @@ const App = () => {
       <BrowserRouter>
         <div className="min-h-screen bg-background">
           <Navbar />
-          <Routes>
-            <Route path="/" element={<CodeEditor />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={
-              <SignedIn>
-                <Dashboard />
-              </SignedIn>
-            } />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <CodeEditorProvider>
+            <Routes>
+              <Route path="/" element={<CodeEditor />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={
+                <SignedIn>
+                  <Dashboard />
+                </SignedIn>
+              } />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </CodeEditorProvider>
         </div>
       </BrowserRouter>
     </>
