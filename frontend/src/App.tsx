@@ -13,7 +13,20 @@ import { CodeEditorProvider } from "./context/CodeEditorContext";
 const App = () => {
   return (
     <>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          unstyled: true,
+          classNames: {
+            toast: "rounded-md p-4 shadow-lg border",
+            error: "bg-red-500 text-white",
+            success: "bg-green-500 text-white",
+            warning: "bg-yellow-500 text-black",
+            info: "bg-blue-500 text-white",
+            title: "font-bold",
+            description: "text-sm opacity-80"
+          }
+        }}
+      />
       <BrowserRouter>
         <div className="min-h-screen bg-background">
           <Navbar />
