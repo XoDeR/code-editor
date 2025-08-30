@@ -1,0 +1,45 @@
+import { downloadCode } from "@/lib/api";
+import { useState } from "react";
+import { useAuth } from "@clerk/clerk-react";
+import { toast } from "sonner";
+
+export function useCodeDownload() {
+  const { getToken } = useAuth();
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
+
+  const handleDownload = async (id: string) => {
+    setDownloadingId(id);
+
+    try {
+      const token = await getToken();
+      if (!token) throw new Error("Not authenticated");
+
+      const { blob, fileName } = await downloadCode(id, token);
+
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+
+      toast.info(
+        "Download Started",
+        {
+          description: `Your file (${fileName}) is being downloaded.`
+        });
+    } catch (error) {
+      toast.error(
+        "Error",
+        {
+          description: "Failed to download code"
+        });
+    } finally {
+      setDownloadingId(null);
+    }
+  };
+
+  return { handleDownload, downloadingId };
+}
