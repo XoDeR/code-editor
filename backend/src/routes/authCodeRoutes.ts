@@ -62,7 +62,7 @@ router.put("/:id", async (req: Request, res: Response) => {
     if (id !== undefined) where.id = id;
     const updated = await prisma.code.updateMany({
       where,
-      data: { title, language, code, stdin }
+      data: { title, language, code }
     });
     res.json(updated);
   } catch (error) {
