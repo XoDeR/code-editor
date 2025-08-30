@@ -10,12 +10,12 @@ interface Props {
   height?: string;
 }
 
-export function CodeEditorComponent({
+const CodeEditorComponent = ({
   value,
   onChange,
   language,
   height = "500px",
-}: Props) {
+}: Props) => {
 
   const { theme } = useTheme();
   const codeEditorContext = useCodeEditor();
@@ -61,3 +61,5 @@ export function CodeEditorComponent({
     </Card>
   );
 }
+
+export default CodeEditorComponent;

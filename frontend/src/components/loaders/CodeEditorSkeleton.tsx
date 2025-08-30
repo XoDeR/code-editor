@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardHeader } from "@/components/ui/card";
 
-export function CompilerSkeleton() {
+const CodeEditorSkeleton = () => {
   return (
     <div className="mx-auto px-4 py-6 max-w-7xl">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -36,3 +36,5 @@ export function CompilerSkeleton() {
     </div>
   );
 }
+
+export default CodeEditorSkeleton;
